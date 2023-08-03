@@ -1,0 +1,7 @@
+{
+    "UserName" : "#user-name",
+    "Password" : "#password",
+    "LoginButton" : "#login-button",
+    "HomePageTitle" : ".app_logo",
+    "ErrorMessage" : ".error-message-container.error h3"
+}

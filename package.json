@@ -1,0 +1,17 @@
+{
+  "name": "cucumberjsplaywright",
+  "version": "1.0.0",
+  "description": "Web UI Automation using Cucumber.js, Playwright and JavaScript ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joseph Richie",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.3.0",
+    "@playwright/test": "^1.36.2",
+    "chai": "^4.3.7",
+    "playwright": "^1.36.2"
+  }
+}
