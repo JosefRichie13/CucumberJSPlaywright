@@ -18,6 +18,8 @@ When('I login as a {string} user', async function(UserType){
             await page.locator(selectors.UserName).type(configs.LockedUser)
             await page.locator(selectors.Password).type(configs.Password)
             break
+        case "no_username":
+            await page.locator(selectors.Password).type(configs.Password)    
     }
     await page.locator(selectors.LoginButton).click()
 })
