@@ -6,5 +6,15 @@
     "ErrorMessage" : ".error-message-container.error h3",
     "Menu": "#react-burger-menu-btn",
     "LogoutButton": "#logout_sidebar_link",
-    "LoginPageTitle": ".login_logo"
+    "LoginPageTitle": ".login_logo",
+    "ProductList": ".inventory_item_name",
+    "AddToCart": ".btn.btn_primary.btn_small.btn_inventory",
+    "Cart": ".shopping_cart_link",
+    "Checkout": "#checkout",
+    "FirstName": "#first-name",
+    "LastName": "#last-name",
+    "ZipCode": "#postal-code",
+    "ContinueButton": "#continue",
+    "FinishButton": "#finish",
+    "CheckoutBanner": ".complete-header"
 }
