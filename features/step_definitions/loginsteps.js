@@ -1,7 +1,7 @@
 const {Given, When, Then} = require('@cucumber/cucumber');
 const {assert, expect} = require('chai')
-const configs = require('../support/configs.json')
-const selectors = require('../support/selectors.json')
+const configs = require('../support/configs.js')
+const selectors = require('../support/selectors.js')
 
  
 Given('I open the web page', async function(){

@@ -1,7 +1,6 @@
 const {Given, When, Then} = require('@cucumber/cucumber');
 const {assert, expect} = require('chai')
-const configs = require('../support/configs.json')
-const selectors = require('../support/selectors.json')
+const selectors = require('../support/selectors')
 const HelperMethods = require('../support/methods.js')
 
 When('I add {string} to the cart', async function(Product){
