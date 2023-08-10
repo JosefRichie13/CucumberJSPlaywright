@@ -7,7 +7,8 @@ setDefaultTimeout(60 * 1000);
 
 
 Before(async function () {
-    browser = await chromium.launch({headless: false})
+     browser = await chromium.launch({headless: false})
+    //browser = await chromium.launch({headless: false, channel: 'msedge'}) //-- Launches installed Edge browser
     const context = await browser.newContext();
     page = await context.newPage();
 })
@@ -19,6 +20,8 @@ After(async function () {
     const buffer = await page.screenshot()
     var world = this
     world.attach(buffer, "image/png")
+
+    await new Promise(r => setTimeout(() => r(), 10000))
 
     await browser.close()
 })
