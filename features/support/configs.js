@@ -6,6 +6,7 @@ class configs {
     static Password = "secret_sauce"
     static WrongUser = "wrong_user"
     static WrongPassword = "wrong_password"
+    static VisualUser = "visual_user"
     
 }
 
