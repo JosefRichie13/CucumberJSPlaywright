@@ -2,53 +2,54 @@ const {Given, When, Then} = require('@cucumber/cucumber');
 const {assert, expect} = require('chai')
 const configs = require('../support/configs.js')
 const selectors = require('../support/selectors.js')
+const DriverMethods = require('../support/driver.js')
 
  
 Given('I open the web page', async function(){
-    await page.goto(configs.MainURL)
+    await DriverMethods.LoadAUrl(configs.MainURL)
 })
 
 When('I login as a {string} user', async function(UserType){
     switch(UserType){
         case "standard":
-            await page.locator(selectors.UserName).type(configs.ValidUser)
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
+            await DriverMethods.TypeText(selectors.UserName, configs.ValidUser)
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
         case "locked":
-            await page.locator(selectors.UserName).type(configs.LockedUser)
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
+            await DriverMethods.TypeText(selectors.UserName, configs.LockedUser)
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
         case "no_username":
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
         case "no_password":
-            await page.locator(selectors.UserName).type(configs.ValidUser)    
-            await page.locator(selectors.LoginButton).click()
+            await DriverMethods.TypeText(selectors.UserName, configs.ValidUser)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
-        case "wrong_username":        
-            await page.locator(selectors.UserName).type(configs.WrongUser)
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
+        case "wrong_username":
+            await DriverMethods.TypeText(selectors.UserName, configs.WrongUser)
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
         case "wrong_password":
-            await page.locator(selectors.UserName).type(configs.ValidUser)
-            await page.locator(selectors.Password).type(configs.WrongPassword)
-            await page.locator(selectors.LoginButton).click()
+            await DriverMethods.TypeText(selectors.UserName, configs.ValidUser)
+            await DriverMethods.TypeText(selectors.Password, configs.WrongPassword)
+            await DriverMethods.ClickButton(selectors.LoginButton)
             break
         case "visual_success":
-            await page.locator(selectors.UserName).type(configs.ValidUser)
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
-            await page.screenshot({path : './features/screenshots/visual_success_before.png', fullPage: true})
+            await DriverMethods.TypeText(selectors.UserName, configs.ValidUser)
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
+            await DriverMethods.TakeScreenshotWithFullPage('./features/screenshots/visual_success_before.png')
             break
         case "visual_error":
-            await page.locator(selectors.UserName).type(configs.VisualUser)
-            await page.locator(selectors.Password).type(configs.Password)
-            await page.locator(selectors.LoginButton).click()
-            await page.screenshot({path : './features/screenshots/visual_error_before.png', fullPage: true})
+            await DriverMethods.TypeText(selectors.UserName, configs.VisualUser)
+            await DriverMethods.TypeText(selectors.Password, configs.Password)
+            await DriverMethods.ClickButton(selectors.LoginButton)
+            await DriverMethods.TakeScreenshotWithFullPage('./features/screenshots/visual_error_before.png')
             break            
         default :
             console.log("Incorrect Usertype")       
@@ -58,12 +59,12 @@ When('I login as a {string} user', async function(UserType){
 Then('I should see {string} in the {string}', async function(Message, Page){
     switch(Page){
         case "homepage":
-            assert.equal(await page.locator(selectors.HomePageTitle).textContent(), Message)
-            assert.equal(await page.locator(selectors.LoginButton).isVisible(), false)
+            assert.equal(await DriverMethods.GetTextFromElement(selectors.HomePageTitle), Message)
+            assert.equal(await DriverMethods.ElementVisibleOrNot(selectors.LoginButton), false)
             break;
         case "loginpage":
-            assert.equal(await page.locator(selectors.LoginPageTitle).textContent(), Message) 
-            assert.equal(await page.locator(selectors.LoginButton).isVisible(), true)   
+            assert.equal(await DriverMethods.GetTextFromElement(selectors.LoginPageTitle), Message)
+            assert.equal(await DriverMethods.ElementVisibleOrNot(selectors.LoginButton), true)
             break
         default : 
             console.log("Incorrect page")    
@@ -71,10 +72,10 @@ Then('I should see {string} in the {string}', async function(Message, Page){
 })
 
 Then('I should see the login error message {string}', async function(Message){
-    expect(await page.locator(selectors.ErrorMessage).textContent()).to.contain(Message)
+    expect(await DriverMethods.GetTextFromElement(selectors.ErrorMessage)).to.contain(Message)
 })
 
 Then('I logout of the webpage', async function(){
-    await page.locator(selectors.Menu).click()
-    await page.locator(selectors.LogoutButton).click()
+    await DriverMethods.ClickButton(selectors.Menu)
+    await DriverMethods.ClickButton(selectors.LogoutButton)
 })

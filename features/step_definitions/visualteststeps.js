@@ -14,7 +14,7 @@ Given('I verify that the UI is same', async function(){
  Given('I verify that the UI is different', async function(){
         await page.screenshot({path : './features/screenshots/visual_error_after.png', fullPage: true})
         await new Promise(resolve => setTimeout(resolve, 3 * 1000))
-        const {equal} = await looksSame('./features/screenshots/visual_error_before.png', './features/screenshots/visual_error_after.png', {ignoreCaret: true});
+        const {equal} = await looksSame('./features/screenshots/visual_error_before.png', './features/screenshots/visual_error_after.png', {ignoreCaret: true}, {ignoreAntialiasing: true});
         console.log(equal)
         assert.equal(equal, false) 
         })       

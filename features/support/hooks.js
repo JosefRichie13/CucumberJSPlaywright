@@ -21,7 +21,7 @@ After(async function () {
     var world = this
     world.attach(buffer, "image/png")
 
-    await new Promise(r => setTimeout(() => r(), 10000))
+    //await new Promise(r => setTimeout(() => r(), 10000))
 
     await browser.close()
 })

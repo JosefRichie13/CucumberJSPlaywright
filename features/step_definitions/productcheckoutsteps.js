@@ -2,39 +2,40 @@ const {Given, When, Then} = require('@cucumber/cucumber');
 const {assert, expect} = require('chai')
 const selectors = require('../support/selectors')
 const HelperMethods = require('../support/methods.js')
+const DriverMethods = require('../support/driver.js')
 
 When('I add {string} to the cart', async function(Product){
-    Names = await page.locator(selectors.ProductList)
-    NamesFromUI = HelperMethods.NamesFromList(await Names.allTextContents())
+    Names = await DriverMethods.GetListOfElementText(selectors.ProductList)
+    NamesFromUI = await HelperMethods.NamesFromList(await Names.allTextContents())
 
     Index = NamesFromUI.indexOf(Product)
-    await page.locator(selectors.AddToCart).nth(Index).click()
+    await DriverMethods.ClickNthButton(selectors.AddToCart, Index)
 })
 
 When('I click on the cart', async function(){
-    await page.locator(selectors.Cart).click()
+    await DriverMethods.ClickButton(selectors.Cart)
 })
 
 When('I checkout', async function(){
-    await page.locator(selectors.Checkout).click()
+    await DriverMethods.ClickButton(selectors.Checkout)
 })
 
 When('I enter my information to continue', async function(table){
 
     const UserDetails = table.hashes()
 
-    await page.locator(selectors.FirstName).type(UserDetails[0]['FirstName'])
-    await page.locator(selectors.LastName).type(UserDetails[0]['LastName'])
-    await page.locator(selectors.ZipCode).type(UserDetails[0]['Zip'])
+    await DriverMethods.TypeText(selectors.FirstName, UserDetails[0]['FirstName'])
+    await DriverMethods.TypeText(selectors.LastName, UserDetails[0]['FirstName'])
+    await DriverMethods.TypeText(selectors.ZipCode, UserDetails[0]['FirstName'])
 
-    await page.locator(selectors.ContinueButton).click()
+    await DriverMethods.ClickButton(selectors.ContinueButton)
 
 })
 
 When('I confirm my order', async function(){
-    await page.locator(selectors.FinishButton).click()
+    await DriverMethods.ClickButton(selectors.FinishButton)
 })
 
 Then('I should see {string} after the order is placed', async function(Message){
-    assert.equal(await page.locator(selectors.CheckoutBanner).textContent(), Message)
+    assert.equal(await DriverMethods.GetTextFromElement(selectors.CheckoutBanner), Message)
 })
