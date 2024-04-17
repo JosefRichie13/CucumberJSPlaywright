@@ -40,6 +40,13 @@ class DriverMethods{
         await page.locator(element).selectOption(selectOptionInText);
     }
 
+    async GetURLFromANewTab(buttonToBeClicked){
+        const popupPromise = page.waitForEvent('popup')
+        this.ClickButton(buttonToBeClicked)
+        const popup = await popupPromise
+        return popup.url()
+    }
+
 }
 
 module.exports = new DriverMethods()
