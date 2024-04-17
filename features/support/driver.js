@@ -36,6 +36,10 @@ class DriverMethods{
         return await page.locator(element).allTextContents()
     }
 
+    async SelectFromDropdownUsingText(element, selectOptionInText){
+        await page.locator(element).selectOption(selectOptionInText);
+    }
+
 }
 
 module.exports = new DriverMethods()
