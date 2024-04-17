@@ -7,8 +7,8 @@ setDefaultTimeout(60 * 1000);
 
 
 Before(async function () {
-     browser = await chromium.launch({headless: false})
-    //browser = await chromium.launch({headless: false, channel: 'msedge'}) //-- Launches installed Edge browser
+    //browser = await chromium.launch({headless: false})
+    browser = await chromium.launch({headless: false, channel: 'msedge'}) //-- Launches installed Edge browser
     const context = await browser.newContext();
     page = await context.newPage();
 })

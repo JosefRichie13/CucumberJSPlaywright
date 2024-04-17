@@ -18,6 +18,22 @@ class selectors {
     static ContinueButton = "#continue"
     static FinishButton = "#finish"
     static CheckoutBanner = ".complete-header"
+    static PriceList = ".inventory_item_price"
+    static ProductSort = ".product_sort_container"
+    static ItemNumberInCart = ".shopping_cart_badge"
+    static ProductBackpack = "button[name*=sauce-labs-backpack]"
+    static ProductBikelight = "button[name*=sauce-labs-bike-light]"
+    static ProductTshirt = "button[name*=sauce-labs-bolt-t-shirt]"
+    static ProductJacket = "button[name*=sauce-labs-fleece-jacket]"
+    static ProductOnesie = "button[name*=sauce-labs-onesie]"
+    static ProductTshirtRed = "button[name*=allthethings]"
+    static Subtotal = ".summary_subtotal_label"
+    static TaxCalculated = ".summary_tax_label"
+    static FullTotal = "div[class*=summary_total_label]"
+    static Footer = ".footer"
+    static Footer_Twitter = ".social_twitter a"
+    static Footer_FB = ".social_facebook a"
+    static Footer_Linkedin = ".social_linkedin a"
 
 }
 

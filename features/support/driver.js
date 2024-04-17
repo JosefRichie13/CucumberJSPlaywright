@@ -33,7 +33,7 @@ class DriverMethods{
     }
 
     async GetListOfElementText(element){
-        return await page.locator(element)
+        return await page.locator(element).allTextContents()
     }
 
 }
